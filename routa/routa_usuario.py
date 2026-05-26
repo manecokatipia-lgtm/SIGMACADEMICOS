@@ -84,7 +84,7 @@ def validar_usuario():
         email = request.form['email']
         usuarios = valida_usuario(senha, email)
         usuario_id = session.get("usuario_id")
-        print(usuarios.professor.foto)
+        # print(usuarios.professor.foto)
         if usuarios is not None and usuarios.id == usuario_id:
             if usuarios.nivel == "adm":
                 return render_template('/index.html', usuario=usuarios) 

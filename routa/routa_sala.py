@@ -23,7 +23,7 @@ def cadastrar():
     return mensagem
 
 #----------------------------SALA-------------------------------------------------
-@sala_blue.route('/cadastrar_conteudo', methods=['POST'])
+@sala_blue.route('/cadastrar_conteudo', methods=['POST', 'GET'])
 def cadastrar_conteudo():
     destino_1=""
     destino_2=""

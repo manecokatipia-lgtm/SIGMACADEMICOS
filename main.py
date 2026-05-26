@@ -27,7 +27,7 @@ app.register_blueprint(sala_blue)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('login.html')
 
 
 
@@ -36,8 +36,8 @@ with db:
 
 
 def open_browser():
-    webbrowser.open_new("http://127.0.0.1:8080/")
+    webbrowser.open_new("http://127.0.0.1:9980/")
 
 if __name__ == '__main__':
-    Timer(1, open_browser).start()
-    app.run(debug=True, port=8080) 
+    # Timer(1, open_browser).start()
+    app.run(debug=True, port=9980) 

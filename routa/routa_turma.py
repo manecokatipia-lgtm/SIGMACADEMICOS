@@ -134,7 +134,7 @@ def turma_pdt(id):
         return f'<td>{turmas}</td>'
 
 #---------------------------------------------------------------------------
-@turma_blue.route('/pesquisar_turma_id/<int:id>',methods=['POST'])
+@turma_blue.route('/pesquisar_turma_id/<int:id>',methods=['POST', 'POST'])
 def pesquisar_turma_id(id):
         turma_id=pesquisar_turma_id_(id)
         if turma_id:
