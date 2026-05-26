@@ -1,0 +1,73 @@
+<form hx-post="/aluno/cadastrar" hx-target="#professor-list" hx-swap="outerHTML" enctype="multipart/form-data"
+    hx-conf="confirm('Dados do aluno serão gravados. Deseja continuar?')"  hx-on:afterRequest="this.reset()"  onsubmit="setTimeout(() => this.reset(), 100);" >
+
+    <h4 class="text-center">CADASTRAR ALUNOS</h4><br>
+    <div class="mb-3" style="display:flex; flex-direction:column; align-items:center;border:1px solid #89a4ec;padding:25px;border-radius:10px; background-color:rgb(255, 255, 255)">
+
+        <div class="input-group mb-3" style="width:900px;">
+            <span class="input-group-text" id="basic-addon2">@</span>
+            <input type="number" class="form-control" placeholder="Nº do aluno" aria-label="Recipient’s username"
+                aria-describedby="basic-addon2" name="numero_aluno">
+        </div>
+
+        <div class="input-group mb-3" style="width:900px;">
+            <span class="input-group-text" id="basic-addon2">@</span>
+            <input type="text" class="form-control" placeholder="Nome do aluno" aria-label="Recipient’s username"
+                aria-describedby="basic-addon2" name="nome">
+        </div>
+        <div class="input-group mb-3" style="width:900px;">
+            <span class="input-group-text" id="basic-addon2">@</span>
+            <input type="email" class="form-control" placeholder="E-mail do aluno" aria-label="Recipient’s username"
+                aria-describedby="basic-addon2" name="email">
+        </div>
+        <div class="input-group mb-3" style="width:900px;">
+            <span class="input-group-text" id="basic-addon2">@</span>
+            <input type="date" class="form-control" placeholder="Nº do aluno" aria-label="Recipient’s username"
+                aria-describedby="basic-addon2" name="data_nascimento">
+        </div>
+        <div class="input-group mb-3" style="width:900px;">
+            <span class="input-group-text" id="basic-addon2">@</span>
+            <select class="form-select" aria-label="Default select example" name="genero">
+                <option selected>genero</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+            </select>
+        </div>
+
+        <div class="input-group mb-3" style="width:900px;">
+            <span class="input-group-text" id="basic-addon2">@</span>
+            <select class="form-select" aria-label="Default select example" name="curso" id="curso">
+                <option selected>Cursos</option>
+                <option value="Técnico de Informática">Técnico de Informática</option>
+                <option value="Enegias Renováveis">Enegias Renováveis</option>
+                <option value="Electromecanica">Electromecanica</option>
+                <option value="Tecnico de Informática de Gestão">Tecnico de Informática de Gestão</option>
+                <option value="Electrónica e Telecomunicações">Electrónica e Telecomunicações</option>
+            </select>
+        </div>
+        <div class="input-group mb-3" style="width:900px;">
+            <span class="input-group-text" id="basic-addon2">@</span>
+            <select class="form-select" aria-label="Default select example" name="classe" id="classe">
+                <option selected>nivel</option>
+                <option value="10ª  Classe" selected>10ª Classe</option>
+                <option value="11ª  Classe">11ª Classe</option>
+                <option value="12ª  Classe">12ª Classe</option>
+                <option value="13ª  Classe">13ª Classe</option>
+            </select>
+        </div>
+
+        <div class="input-group mb-3" style="width:900px;">
+            <span class="input-group-text"><img src="{{ url_for('static', filename='img/icon/foto.png') }}" alt=""
+                    width="20" height="20"></span>
+            <div class="form-floating">
+                <input type="file" class="form-control" aria-label="Recipient’s username"
+                    aria-describedby="basic-addon2" name="imagem" placeholder="foto" accept="image/*" required>
+            </div>
+        </div>
+
+        <div class="mb-3" style="display:flex; flex-direction:column; align-items:left;">
+            <button type="submit" class="btn btn-primary"  style="width:200px;">Cadastrar-me</button>
+        </div>
+    </div>
+
+</form>

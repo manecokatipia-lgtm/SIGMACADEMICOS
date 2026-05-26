@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ed.perfil</title>
+</head><link rel="stylesheet" href="editar.css">
+<body>
+    
+<div class="container">
+    <h2>Editar Perfil</h2>
+
+    <div class="profile-image">
+<img src="img/1693586338_Cristiano Ronaldo (22).jpg" alt="Foto do Aluno" class="profile-pic">
+<div style="margin-top: 10px;">
+    <input type="file" id="photo" style="display: none;">
+    <label for="photo" style="color: var(--primary-color);cursor: pointer;">Alterar foto</label>
+</div>
+    </div>
+
+    <form action="#" method="POST">
+        <div class="form-group">
+            <label for="nome">Nome Completo</label>
+            <input type="tel" id="name" name="name" value="" required>
+        </div>
+
+<div class="form-group">
+        <label for="genero" id="genero">Genero</label>
+    <select name="Genero" id="genero">
+<option value="masculino">Masculino</option>
+<option value="masculino">Feminino</option>
+<option value="masculino">Outro</option>
+</select>
+</div>
+
+
+<div class="form-group">
+        <label for="classe" id="classe">Classe</label>
+    <select name="Genero" id="genero">
+<option value="10">10ºclasse</option>
+<option value="11">11ºclasse</option>
+<option value="12">12ºclasse</option>
+<option value="12">13ºclasse</option>
+</select>
+</div>
+
+        <div class="form-group">
+            <label for="curso">curso</label>
+            <select name="curso" id="curso">
+                <option value="inf">Técnico de Informática</option>
+                <option value="er">Energias Renováveis</option>
+                <option value="au">Automação</option>
+                <option value="si">Sistema de Gestão Informáticos</option>
+                <option value="El">Electricidade</option>
+                <option value="Me">Mecanica</option>
+                <option value="Fi">Finanças</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="bio">Biografia</label>
+            <textarea name="bio" id="bio" rows="3" placeholder="Fale um pouco sobre você..."></textarea>
+        </div>
+
+
+        <div class="form-group">
+            <label for="bio">interesses</label>
+            <textarea name="bio" id="bio" rows="3" placeholder="Fale sobre os seus interesses..."></textarea>
+        </div>
+
+
+        <div class="btn-container">
+            <button type="button" class="btn-cancel">Cancelar</button>
+            <button type="submit" class="btn-save">Salvar Alterações</button>
+        </div>
+    </form>
+</div>
+
+
+</body>
+</html>

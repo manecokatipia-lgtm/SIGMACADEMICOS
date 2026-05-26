@@ -1,0 +1,40 @@
+<form hx-put="{{url_for('material.editar_material', id=material.id) }}" hx-target="#professor-list" hx-swap="innerHTML"  hx-on:afterRequest="this.reset()"  onsubmit="setTimeout(() => this.reset(), 100);">
+    <h2 class="text-center">Editar Material Didático</h2>
+    <div class="mb-3">
+        <div class="mb-3">
+
+            <div class="input-group mb-3">
+                <span class="input-group-text">@</span>
+                <input type="text" class="form-control" placeholder="Nome do Material"
+                    aria-label="Recipient’s username" aria-describedby="basic-addon2" name="nome" value="{{material.nome}}"   >
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text">@</span>
+                <input type="text" class="form-control" placeholder="Tipo de material"
+                    aria-label="Recipient’s username" aria-describedby="basic-addon2" name="tipo" value="{{material.tipo}}" >
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">@</span>
+                <input type="text" class="form-control" placeholder="Descrição do Material"
+                    aria-label="Recipient’s username" aria-describedby="basic-addon2" name="descrisao" value="{{material.descrisao}}" >
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">@</span>
+                <input type="date" class="form-control" placeholder="Data de Upload"
+                    aria-label="Recipient’s username" aria-describedby="basic-addon2" name="data_upload" value="{{material.data_upload}}" >
+            </div>
+
+            <div class="input-group mb-3">
+             <span class="input-group-text"><img src="{{ url_for('static', filename='img/foto.png') }}" alt="" width="20"
+                    height="20"></span>
+             <div class="form-floating">
+                <input type="file" class="form-control" placeholder="Foto" aria-label="Recipient’s username"aria-describedby="basic-addon2" name="imagem" value="{{material.foto}}" accept="imagem/*" required>
+             </div>
+           </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">actualizar</button>
+            </div>
+
+</form>

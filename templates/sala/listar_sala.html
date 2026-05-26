@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content%}
+
+<h4 class="text-center">Lista de Salas</h4><br>
+<hr>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Professor</th>
+      <th scope="col">Turma</th>
+      <th scope="col">Foto</th>
+      <th scope="col">acção</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for sala in salas %}
+    <tr>
+      <td scope="row">{{sala.professor_id.id}}</td>
+      <td>{{sala.nome}}</td>
+      <td> {{sala.professor_id.nome}}</td>
+      <td>
+        <select class="form-select" aria-labelledby="basic-addon2" aria-label="Default select example"
+          hx-post="{{url_for('turma.pesquisar_turma_id',id=sala.professor_id.id)}}" hx-target="this" hx-trigger="load"
+          hx-swap="outerHTML">
+          <option value="">turmas</option>
+          {%for tur in turmas%}
+          <option value="{{tur.id}}">{{tur.nome}}</option>
+          {%endfor%}
+        </select>
+      </td>
+      <td>
+        {% if sala.foto %}
+        <img alt="logo" src="{{url_for('static',filename='img/sala/' + sala.foto) }}" width="30" height="30"
+          class="rounded">
+        {% else %}
+        <img alt="logo" src="{{url_for('static', filename='img/icon/foto.png')}}" width="30" height="30"
+          class="rounded">
+        {% endif %}
+      </td>
+      <td>
+        <button class="btn btn-primary" hx-get="{{ url_for('sala.form_sala_editar',id=sala.professor_id.id) }}"
+          hx-target="#user-form">Editar</button>
+        <button class="btn btn-danger" hx-delete="{{url_for('sala.excluir_sala',id=sala.professor_id.id) }}"
+          hx-target="#professor-list" hx-confirm="Tem certeza que deseja excluir esta sala?"
+          hx-swap="outerHTML">Excluir</button>
+        <button class="btn btn-primary" hx-get="{{url_for('sala.form_conteudo', id=sala.professor_id.id) }}"
+          hx-target="#user-form" >vincular</button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+

@@ -1,0 +1,22 @@
+<form hx-post="{{ url_for('turma.cadastrar', id=turma.id) }}" hx-target="#professor-list" hx-swap="innerHTML"  hx-on:afterRequest="this.reset()"  onsubmit="setTimeout(() => this.reset(), 100);">
+    <h2 class="text-center" id="prof_titulo">Editar Turma</h2>
+    <div class="mb-3">
+        <div class="mb-3">
+
+            <div class="input-group mb-3">
+                <span class="input-group-text">@</span>
+                <input type="text" class="form-control" placeholder="Nome da Disciplina"
+                    aria-label="Recipient’s username" aria-describedby="basic-addon2" name="nome" value="{{turma.nome}}">
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text">@</span>
+                <input type="text" class="form-control" placeholder="Sigla da disciplina"
+                    aria-label="Recipient’s username" aria-describedby="basic-addon2" name="capacidade" value="{{turma.capacidade}} ">
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-success">Actualizar</button>
+            </div>
+
+</form>

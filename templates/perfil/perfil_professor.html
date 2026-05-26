@@ -1,0 +1,43 @@
+<header class="profile-header">
+    <div class="avatar-container">
+        <img src="{{ professor.foto }}" alt="Foto de Perfil" class="profile-pic">
+    </div>
+    <h1 class="user-name">{{ professor.nome }}</h1>
+    <p class="user-email">{{ professor.email }}</p>
+</header>
+
+<section class="profile-info">
+    <div class="info-group">
+        <h3><i class="fa-solid fa-address-card"></i> Biografia</h3>
+        <p>{{ professor.biografia }}</p>
+    </div>
+
+    <div class="info-row">
+        <div class="info-item">
+            <span class="label">Gênero:</span>
+            <span class="value">{{ professor.genero }}</span>
+        </div>
+        <div class="info-item">
+            <span class="label">Disciplinas:</span>
+            <span class="value">{{ professor.disciplina }}</span>
+        </div>
+    </div>
+
+    <div class="info-group">
+        <h3><i class="fa-solid fa-lightbulb"></i> Interesses</h3>
+        <div class="tags">
+            {% for interesse in professor.interesses %}
+                <span class="tag">{{ interesse }}</span>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="info-group">
+        <h3><i class="fa-solid fa-graduation-cap"></i> Atividades Académicas</h3>
+        <ul class="activity-list">
+            {% for atividade in professor.atividades %}
+                <li>{{ atividade }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>

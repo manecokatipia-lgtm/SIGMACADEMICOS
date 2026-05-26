@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h4 class="text-center">Lista de Materiais</h4>
+<hr>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Titulo</th>
+      <th scope="col">Tipo</th>
+      <th scope="col">Descrisao</th>
+      <th scope="col">Data de Upload</th>
+      <th scope="col">acção</th>
+      <th scope="col">foto</th>
+      <!-- Talvez a opção acção sirva para expecificar os materiasi que estao ou não em uso/activo -->
+   
+    </tr>
+  </thead>
+  <tbody>
+    {% for material in material %}
+    <tr>
+      <td scope="row">{{material.id}}</td>
+      <td>{{material.nome}}</td>
+      <td>{{material.tipo}}</td>
+      <td>{{material.descrisao}}</td>
+      <td>{{material.data_uplod}}</td>
+      <td>
+        <button class="btn btn-primary" hx-get="{{url_for('material.form_material_editar',id=material.id) }}"
+          hx-target="#user-form">Editar</button>
+        <button class="btn btn-danger" hx-delete="{{url_for('material.excluir_material',id=material.id) }}"
+          hx-target="#professor-list">Excluir</button>
+      </td>
+
+      <td>
+              {% if material.foto %}
+            <img alt="Foto do material" src="{{ url_for('static', filename='img/' + material.foto) }}" width="30" height="30"
+            class="rounded">
+           {% else %}
+            <img alt="Foto de Perfil" src="{{url_for('static', filename='img/foto.png') }}" width="30" height="30" class="rounded">
+           {% endif %}
+     </td>
+
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

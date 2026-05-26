@@ -1,0 +1,10 @@
+<td>
+  <input hx-swap="innerHTML"  hx-on:afterRequest="this.reset()"  onsubmit="setTimeout(() => this.reset(), 100);"
+    type="text" 
+    name="n_disciplinas" 
+    value="{{professor.n_disciplina}}" 
+    hx-post="{{url_for('turma.salvar_n_disciplinas', id=professor.id)}}" 
+    hx-trigger="blur" 
+    hx-target="this" 
+    hx-swap="outerHTML">
+</td>

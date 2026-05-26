@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+{% if turmas %}
+<h4 class="text-center">Lista de Turmas</h4>
+<hr>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Capacidade</th>
+      <th scope="col">Nº de Disciplina</th>
+      <th scope="col">Acção</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for turma in turmas %}
+    <tr>
+      <td scope="row">{{turma.id}}</td>
+      <td>{{turma.nome}}</td>
+      <td>{{turma.capacidade}}</td>
+      <td>2-12</td>
+      <td>
+        <button class="btn btn-primary" hx-get="{{url_for('turma.form_turma_editar',id=turma.id) }}"
+          hx-target="#user-form" hx-swap="innerHTML">Editar</button>
+        <button class="btn btn-danger" hx-delete="{{url_for('turma.excluir_turma',id=turma.id) }}"
+          hx-target="#professor-list" hx-swap="innerHTML">Excluir</button>
+        <button class="btn btn-warning" hx-get="{{url_for('turma.form_add',id=turma.id)}}" hx-target="#user-form"
+          hx-swap="innerHTML">Vincular Professor</button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<button type="button" class="btn btn-primary" hx-post="{{ url_for('turma.vincular_prof') }}" hx-trigger="click"
+  hx-include="[name='id_prof','id_disc']:checked">+</button>
+
+{% else %}
+<h4 class="text-center">Nenhuma Turma Encontrada.</h4>
+{% endif %}
+
+
+{% endblock %}

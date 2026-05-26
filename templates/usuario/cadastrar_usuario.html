@@ -1,0 +1,46 @@
+<form hx-post="{{ url_for('usuario.cadastrar')}}" hx-target="#professor-list" hx-swap="outerHTML"  hx-on:afterRequest="this.reset()"  onsubmit="setTimeout(() => this.reset(), 100);">
+    <h2 class="text-center" id="prof_titulo">Cadastrar Usuário</h2>
+    <div class="mb-3"> 
+        <div class="mb-3">
+            <div class="input-group mb-3">
+                <input type="hidden" class="form-control" aria-label="Recipient’s username"
+                    aria-describedby="basic-addon2" name="np1" readonly value="{{np}}">
+            </div>
+            <div class="input-group mb-3">
+                <input type="hidden" class="form-control" placeholder="nome do usuário"
+                    aria-label="Recipient’s username" aria-describedby="basic-addon2" name="id_usuario" readonly
+                    value="{{usuarios.id}}">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">@</span>
+                <input type="text" class="form-control" placeholder="nome do usuário" aria-label="Recipient’s username"
+                    aria-describedby="basic-addon2" name="nome" value="{{usuarios.nome}}">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">@</span>
+                <input type="email" class="form-control" placeholder="E-mail do usuário"
+                    aria-label="Recipient’s username" aria-describedby="basic-addon2" name="email"
+                    value="{{usuarios.email}}">
+            </div>
+            <div class="input-group mb-3" style="width:300px;">
+                <span class="input-group-text">@</span>
+                <select class="form-select" aria-label="Default select example" name="nivel" id="nivel"style="width:100px;">
+                    <option value="adm">ADM</option>
+                     <option value="coordenador">Coordenador</option>
+                    <option value="professor">Professor</option>
+                    <option value="aluno">Aluno</option>
+                </select>
+            </div>
+            <div class="input-group mb-3" style="width:300px;">
+                <span class="input-group-text" id="basic-addon2">@</span>
+                <select class="form-select" aria-label="Default select example" name="estado" id="estado"
+                    style="width:100px;">
+                    <option value="Estado">Estado</option>
+                    <option value="True">Activo</option>
+                    <option value="False">Inactivo</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Adicionar</button>
+            </div>
+</form>

@@ -1,0 +1,40 @@
+body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+        }
+        /* Cabeçalho */
+        header {
+            background: linear-gradient(90deg, #00bcd4, #0097a7);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            background: rgb(255, 255, 255);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        /* Perfil */
+        .perfil {
+            display: flex;
+            padding: 20px;
+            gap:180px;
+            margin-top:40px
+        }
+
+        .perfil img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 1px solid #28a745;  
+        }
+        .info h4 {
+            margin: 0;
+            color: #007c91;

@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    <nav style="position= fixed"; class="navbar navbar-expand-lg bg-body-tertiary  fixed-top mt-1 mb-10 rounded">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="{{ url_for('static', filename='img/icon/Solo.jpg') }}" alt="logo" width="40" height="40"
+                    class="d-inline-block align-text-top">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" hx-get="{{url_for('usuario.cadastrar')}}"
+                            hx-target="this" hx-swap="innerHTML">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Cadastrar
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" hx-get="{{url_for('professor.form_professor')}}"
+                                    hx-target="#user-form" hx-swap="innerHTML">Professor</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" hx-get="{{url_for('aluno.form_aluno')}}" hx-target="#user-form"
+                                    hx-swap="innerHTML">Aluno</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" hx-get="{{url_for('disciplina.form_disciplina')}}"
+                                    hx-target="#user-form" hx-swap="innerHTML">Disciplinas</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" hx-get="{{url_for('turma.form_turma')}}" hx-target="#user-form"
+                                    hx-swap="innerHTML">Turmas</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" hx-get="{{url_for('turma.form_add')}}" hx-target="#user-form"
+                                    hx-swap="innerHTML" hx-trigger="click">Vincular Professores</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Criar Usuário
+                        </a>
+                        <ul class="dropdown-menu">
+
+                            <li><a class="dropdown-item" hx-get="{{url_for('usuario.listar_usuario_func')}}"
+                                    hx-target="#professor-list" hx-swap="innerHTML">Professores</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" hx-get="{{url_for('usuario.listar_usuario_aluno')}}"
+                                    hx-target="#professor-list" hx-swap="innerHTML">Alunos</a></li>
+
+                        </ul>
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Sala virtual
+                        </a>
+                        <ul class="dropdown-menu">
+
+                            <li><a class="dropdown-item" hx-get="{{url_for('sala.form_sala')}}" hx-target="#user-form"
+                                    hx-swap="innerHTML" hx-trigger="click">Criar Sala Virtual</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" hx-get="{{url_for('sala.form_conteudo')}}"
+                                    hx-target="#user-form" hx-swap="innerHTML" hx-trigger="click">Adicionar Conteúdo</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" hx-get="{{url_for('sala.listar_conteudo')}}"
+                                    hx-target="#professor-list" hx-swap="innerHTML" hx-trigger="click" onclick="ocultar()">Listar
+                                    Conteúdo</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" hx-get="{{url_for('sala.form_conteudo')}}"
+                                    hx-target="#user-form" hx-swap="innerHTML" hx-trigger="click">Vincular
+                                    Alunos/Salas</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                </li>
+
+                </ul>
+                <form class="d-flex" role="search" hx-post="{{url_for('professor.pesquisar') }}"
+                    hx-target="#professor-list" style="gap: 2px;">
+                    <select class="form-select" aria-label="Default select example" name="pesq" id="pesq">
+                        <option selected>Escolhas</option>
+                        <option value="professor">Professores</option>
+                        <option value="aluno">Alunos</option>
+                        <option value="usuario">Usuários</option>
+                        <option value="disciplina">Disciplinas</option>
+                        <option value="turma">Turmas</option>
+                        <option value="sala">Salas</option>
+
+                    </select>
+                    <input type="text" class="form-control" placeholder="pesquisar" aria-label="Recipient’s username"
+                        aria-describedby="basic-addon2" name="nome" id="nome"
+                        hx-post="{{url_for('professor.pesquisar') }}" hx-target="#professor-list"
+                        hx-trigger="keyup changed delay:500ms" autocomplete="off">
+
+                    <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <br><br><br>
+    <div class="container mt-5">
+
+        <div id="user-form">
+            <h3 class="text-center">Bem-vindo ao Sistema de Gestão de Conteúdos Acadêmicos </h3>
+            <p class="text-center">Gerencie professores, alunos, disciplinas, turmas e salas virtuais de forma eficiente
+                e
+                organizada.</p>
+            <img src="{{ url_for('static', filename='img/icon/ensino.jpg') }}" alt="logo" width="1000" height="500"
+                class="d-block mx-auto">
+
+        </div>
+
+        <div id="professor-list">
+
+        </div>
+    </div>
+
+    <script>
+        function ocultar() {
+            document.getElementById("user-form").style.display = "none";
+        }
+    </script>
+
+    {% endblock %}

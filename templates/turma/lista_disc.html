@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content%}
+
+
+<hr>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">
+        vincular
+      </th>
+      <th scope="col">Nome</th>
+      <th scope="col">Sigla</th>
+      <th scope="col">acção</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for disc in disciplina %}
+    <tr>
+      <td scope="row">{{disc.id}}</td>
+      <td>  <input type="checkbox" name="id_disc" value="{{disc.id}}"  
+                    hx-post="{{url_for('turma.receber_disc')}}" 
+                    hx-trigger="click" hx-include="[name='id_disc']:checked"
+                /></td>
+      <td>{{disc.nome}}</td>
+      <td>{{disc.sigla}}</td>
+      <td>
+        <button class="btn btn-danger" hx-delete="{{url_for('disciplina.excluir_disciplina',id=disc.id) }}"
+          hx-target="#professor-list">Disvincular</button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<div>
+  <h6 class="text-left">Vincular professores - Turma</h6>
+  <button type="button" class="btn btn-primary" hx-post="{{url_for('turma.vincular_prof') }}" hx-trigger="click"
+    hx-include="[name='id_disc']:checked" hx-target="#vincular" hx-swap="outerHTML">vincular</button>
+</div>
+
+
+{% endblock %}

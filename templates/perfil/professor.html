@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/perfil_professor.css') }}">
+<div class="container">
+    <!-- Menu Professor -->
+    <nav class="navbar navbar-expand-lg bg-body-secondary  fixed-top -mt-1 mb-10  rounded h-8">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="{{ url_for('static', filename='img/icon/Solo.png') }}" alt="logo" width="40" height="40"
+                    class="d-inline-block align-text-top" style="border-radius: 50%;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Salas virtuais
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" hx-get="{{url_for('sala.form_sala')}}" hx-target="#card-form"
+                                    hx-swap="innerHTML" hx-trigger="click" 
+                                    >Criar Sala Virtual</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" hx-get="{{url_for('professor.professor_pesquisar_sala')}}" hx-target="#card-form"
+                                    hx-swap="innerHTML" hx-trigger="click" >Ver Salas Virtuais</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Conteúdos
+                        </a>
+                        <ul class="dropdown-menu">
+
+                            <li><a class="dropdown-item" hx-get="{{url_for('sala.form_conteudo')}}" hx-target="#card-form"
+                                    hx-swap="innerHTML" hx-trigger="click">Adicionar Conteúdo</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" hx-get="{{url_for('sala.listar_conteudo_professor')}}"
+                                    hx-target="#card-form" hx-swap="innerHTML" hx-trigger="click">Listar Conteúdo</a>
+                            </li>
+                        </ul>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Configurações
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" hx-get=""
+                                    hx-target="#" hx-swap="innerHTML">Salas</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" hx-get=""
+                                    hx-target="#" hx-swap="innerHTML">Aluno</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" hx-get=""
+                                    hx-target="#" hx-swap="innerHTML">Conteúdos</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" hx-get=""
+                                    hx-target="#professor-list" hx-swap="innerHTML">perfil</a></li>
+                        </ul>
+                    </li>
+                    </li>
+                </ul>
+                </li>
+                </ul>
+                <button class="btn btn-outline-success" type="button" style="height:40px; background-color: #28a745; border-color: #dee6e0; width: 30px; 
+                    height:30px; font-size: 14px; padding: 2px;
+                     border-radius: 100%;">0</button>
+            </div>
+        </div>
+    </nav>
+    <!-- Perfil principal -->
+    <div class="perfil" style="border-bottom:1px solid #190fad; border-radius:10px; background-color:rgb(255, 255, 255); 
+        width:800px; margin-left: auto; margin-right: auto;">
+        {% if usuario.professor.foto %}
+        <img alt="logo" src="{{url_for('static',filename='img/professor/'+usuario.professor.foto) }}" width="20"
+            height="20">
+        {% else %}
+        <img alt="logo" src="{{url_for('static', filename='img/icon/foto.png')}}" width="20" height="20"
+            class="rounded">
+        {% endif %}
+        <div>
+            <h1>IPSM</h1>
+        </div>
+
+        <div class="info" style="padding: 5px; border-top:1px solid #190fad; border-radius:5px;">
+            <p><strong>Nome:</strong> {{usuario.nome}}</p>
+            <p><strong>Email:</strong>{{usuario.email}}</p>
+            <p><strong>Nivel:</strong>{{usuario.nivel}}</p>
+        </div>
+    </div>
+    <div class="section" id="card-form">
+        <div class="container" style="display: flex; gap: 10px; flex-wrap: wrap; ">
+            <div class="card" style="padding:15px;">
+                <div>
+                    <h5>Professor João</h5>
+                    <p>Email: joao@email.com</p>
+                </div>
+                <h6 class="card-title">anexos</h6>
+                <div
+                    style="padding:2px; display:flex;flex-direction:column; border-top:1px solid #eeeeee; border-radius:5px;">
+                    <a href="#" class="card-link">anexo-1</a>
+                    <a href="#" class="card-link">anexo-2</a>
+                </div>
+                <button hx-get="/professor/editar/1" hx-target="#modal" hx-trigger="click" class="btn btn-primary"
+                    style="height: 30px;font-size:14px;padding:5px">
+                    exibir 
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Biografia -->
+    <div class="section">
+        <h4>Biografia</h4>
+        <p>
+            Professor com mais de 10 anos de experiência no ensino,
+            dedicado ao desenvolvimento acadêmico dos alunos.
+        </p>
+    </div>
+    <!-- Disciplinas -->
+    <div class="section">
+        <h4>Disciplinas Lecionadas</h4>
+        <ul>
+            <li>Álgebra</li>
+            <li>Geometria</li>
+            <li>Estatística</li>
+        </ul>
+    </div>
+    <!-- Ações -->
+    <div class="section">
+        <h4>Ações</h4>
+        <a href="#" class="btn">Editar Perfil</a>
+        <a href="#" class="btn">Ver Horário</a>
+    </div>
+</div>
+{%endblock%}

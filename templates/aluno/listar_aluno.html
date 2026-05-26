@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content%}
+{% if alunos %}
+<h4 class="text-center">Lista de Alunos</h4>
+<hr>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nº Matricula</th>
+      <th scope="col">Nome</th>
+      <th scope="col">E-mail</th>
+      <th scope="col">Data Nasc.</th>
+      <th scope="col">Genero</th>
+      <th scope="col">Foto</th>
+      <th scope="col">Acção</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for aluno in alunos %}
+    <tr>
+      <td scope="row">{{aluno.id}}</td>
+      <td>{{aluno.mat}}</td>
+      <td>{{aluno.nome}}</td>
+      <td>{{aluno.email}}</td>
+      <td>{{aluno.data_nasc}}</td>
+      <td>{{aluno.genero}}</td>
+      <td>{% if aluno.foto %}
+        <img alt="logo" src="{{ url_for('static', filename='img/aluno/' + aluno.foto) }}" width="30" height="30"
+          class="rounded">
+        {% else %}
+        <img alt="logo" src="{{url_for('static', filename='img/icon/foto.png') }}" width="30" height="30" class="rounded">
+        {% endif %}
+      </td>
+      
+      <td>
+        <button class="btn btn-primary" hx-get="{{url_for('aluno.form_aluno_editar', id=aluno.id) }}"
+          hx-target="#user-form">Editar</button>
+        <button class="btn btn-danger" hx-delete="{{url_for('aluno.excluir_aluno', id=aluno.id) }}"
+          hx-target="#professor-list">Excluir</button>
+      </td>
+     
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<h4 class="text-center">Nenhum Aluno encontrado.</h4>
+{% endif %}
+{% endblock %}

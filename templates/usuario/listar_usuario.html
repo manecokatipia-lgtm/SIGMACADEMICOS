@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content%}
+{% if usuario %}
+<h4 class="text-center">Lista de Usuários</h4>
+<hr>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">E-mail</th>
+      <th scope="col">Nivel</th>
+      <th scope="col">Estado</th>
+      <th scope="col">Foto</th>
+      <th scope="col">Acção</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for usuario in usuario %}
+    <tr>
+      <td scope="row">{{usuario.id}}</td>
+      <td>{{usuario.nome}}</td>
+      <td>{{usuario.email}}</td>
+      <td>{{usuario.nivel}}</td>
+      <td>
+        <input type="checkbox" name="estado" value="{{usuario.estado}}"
+          hx-post="{{url_for('usuario.salvar_estado_usuario',id=usuario.id)}}" hx-trigger="click" hx-target="this"
+           {% if usuario.estado %} checked {% endif %} />
+      </td>
+      <td>
+         {% if usuario.professor_foto %}
+        <img alt="logo" src="{{url_for('static',filename='img/' +usuario.professor_foto) }}" width="30" height="30"
+          class="rounded">
+        {% elif usuario.aluno_foto  %}
+        <img alt="logo" src="{{url_for('static',filename='img/' +usuario.aluno_foto) }}" width="30" height="30" class="rounded">
+        {% else %}
+        <img alt="logo" src="{{url_for('static', filename='img/Solo.jpg') }}" width="30" height="30" class="rounded">
+        {% endif %}
+      </td>
+      </td>
+      <td>
+        <button class="btn btn-primary" hx-get="{{url_for('usuario.form_usuario_editar',id=usuario.id) }}"
+          hx-target="#user-form">Editar</button>
+        <button class="btn btn-danger" hx-delete="{{url_for('usuario.excluir_usuario',id=usuario.id) }}"
+          hx-target="#professor-list">Excluir</button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<h4 class="text-center">Nenhum Usuário Encontrado.</h4>
+{% endif %}
+{% endblock %}

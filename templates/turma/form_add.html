@@ -1,0 +1,44 @@
+
+{% extends "base.html" %}
+{% block content %}
+<form>
+    <h4 class="text-left">Vinculação de Professres ás Turmas </h4><br>
+    <div class="mb-3">
+        <div class="mb-3">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">@</span>
+                <select class="form-select" aria-label="Default select example" name="id_turma" id="id_turma">
+                    <option selected>Turmas</option>
+                    {% if turma.nome %}
+                    <option value="{{turma.id}}">{{turma.nome}}</option>
+                    {% else %}
+                    {% for tur in turma%}
+                    <option value="{{tur.id}}">{{tur.nome}}</option>
+                    {%endfor%}
+                    {%endif%}
+                </select>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">@</span>
+                <input type="text" class="form-control" placeholder="pesquisar Professores"
+                    aria-label="Recipient’s username" aria-describedby="basic-addon2" name="prof" id="prof"
+                    hx-post="{{url_for('turma.pesq_prof')}}" hx-target="#vincular"
+                    hx-trigger="keyup changed delay:500ms" hx-swap="innerHTML" autocomplete="off">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">@</span>
+                <input type="text" class="form-control" placeholder="pesquisar Disciplinas"
+                    aria-label="Recipient’s username" aria-describedby="basic-addon2" name="disc" id="disc"
+                    hx-post="{{url_for('disciplina.pesq_disciplina') }}" hx-target="#vincular-disc"
+                    hx-trigger="keyup changed delay:500ms" hx-swap="innerHTML" autocomplete="off">
+            </div>
+
+            <div class="input-group mb-3" id="vincular" style="margin-bottom: 10px;">
+
+            </div>
+
+            <div class="input-group mb-3" id="vincular-disc">
+
+            </div>
+</form>
+{% endblock %}

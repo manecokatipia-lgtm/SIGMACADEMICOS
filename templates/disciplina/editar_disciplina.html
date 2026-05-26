@@ -1,0 +1,22 @@
+<form hx-put="{{ url_for('disciplina.editar_disciplina', id=disciplina.id) }}" hx-target="#professor-list" hx-swap="innerHTML"  hx-on:afterRequest="this.reset()"  onsubmit="setTimeout(() => this.reset(), 100);">
+    <h2 class="text-center" id="prof_titulo">Editar Disciplina</h2>
+    <div class="mb-3">
+        <div class="mb-3">
+
+            <div class="input-group mb-3">
+                <span class="input-group-text">@</span>
+                <input type="text" class="form-control" placeholder="Nome da Disciplina"
+                    aria-label="Recipient’s username" aria-describedby="basic-addon2" name="nome" value="{{disciplina.nome}}"   >
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text">@</span>
+                <input type="text" class="form-control" placeholder="Sigla da Disciplina"
+                    aria-label="Recipient’s username" aria-describedby="basic-addon2" name="sigla" value="{{disciplina.sigla}}" >
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-success">Actualizar</button>
+            </div>
+
+</form>

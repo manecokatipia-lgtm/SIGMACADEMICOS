@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content%}
+{% if professores %}
+<h4 class="text-center">Lista de Professores</h4>
+<div class="input-group mb-3">
+  <span class="input-group-text">@</span>
+  <input type="text" class="form-control" placeholder="pesquisar alunos" aria-label="Recipient’s username"
+    aria-describedby="basic-addon2" name="pesquisar">
+</div>
+<table class="table w-100">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nº Agente</th>
+      <th scope="col">Nome</th>
+      <th scope="col">E-mail</th>
+      <th scope="col">Data de Nasc.</th>
+      <th scope="col">Genero</th>
+      <th scope="col">Foto</th>
+      <th scope="col">Acção</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for professor in professores %}
+    <tr>
+      <td scope="row">{{professor.id}}</td>
+      <td>{{professor.np}}</td>
+      <td>{{professor.nome}}</td>
+      <td>{{professor.email}}</td>
+      <td>{{professor.data_nasc}}</td>
+      <td>{{professor.genero}}</td>
+      <td>
+        {% if professor.foto %}
+        <img alt="logo" src="{{ url_for('static', filename='img/professor/' + professor.foto) }}" width="30" height="30"
+          class="rounded">
+        {% else %}
+        <img alt="logo" src="{{url_for('static', filename='img/icon/foto.png') }}" width="30" height="30" class="rounded">
+        {% endif %}
+      </td>
+      <td>
+        <button type="submit" class="btn btn-primary"  hx-get="{{url_for('usuario.form_usuario',id=professor.id,np='professor')}}"
+          hx-target="#user-form"hx-swap="innerHTML">
+          <img alt="logo" src="{{url_for('static', filename='img/icon/add.png') }}" width="20" height="20"
+          class="rounded">
+         Adicionar
+        </button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<h4 class="text-center">Nenhum Professor Encontrado.</h4>
+{% endif %}
+{% endblock %}

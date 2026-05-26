@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+ <link rel="stylesheet" href="{{url_for('static', filename='css/estilo_login.css') }}">
+<div class="login-container">
+    <h2>Entrar</h2>
+
+    <!-- Bloco de aviso de erro -->
+    {% if error %}
+    <div class="error-message">
+        {{ error }}
+    </div>
+    {% endif %}
+
+    <form action="{{url_for('usuario.validar_usuario')}}"  method="post" >
+        <div class="input-group">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Digite seu email" required>
+        </div>
+        <div class="input-group">
+            <label>Senha</label>
+            <input type="password" name="senha" placeholder="Digite sua senha" required>
+        </div>
+        <button type="submit" class="login-btn">Entrar</button>
+    </form>
+    <div class="extra-links">
+        <p><a href="#">Esqueceu a senha?</a></p>
+    </div>
+</div>
+{% endblock %}

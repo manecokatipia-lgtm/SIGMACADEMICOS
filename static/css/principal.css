@@ -1,0 +1,194 @@
+*{
+    box-sizing: border-box;
+   
+}
+body{
+  margin: 0;
+  background-color: #f8f9fa;
+}
+header { 
+    background-color: #0a3d62;
+    padding: 15px;
+    height: 100px;
+    margin-top: 0px;
+} 
+/* .minha_navbar{
+  margin: 0;
+
+} */
+/* .logo-item{
+  border: 1px solid #ffc107;
+} */
+#logo{
+  /* border: 1px solid #ffc107; */
+  font-family: 'playfair';
+   font-weight:700;
+  font-size: 1,4rem;
+    color: #ffc107;
+}
+#buscar{
+  /* border: 7px solid #ffc107; */
+  height: 55px;
+  border-radius: 100px;
+}
+#pesquisa-bar{
+  /* border: 8px solid chocolate; */
+  height: 55px;
+  border-radius: 30px;
+}
+#mynavbar{
+    color: #f8f9fa;
+    margin-left: 100px;
+    margin-right: 10px;
+    /* border: 1px solid red; */
+}
+.navbar-nav{
+    margin-left: 40px;
+    /* border: 1px solid rgb(5, 131, 250); */
+}
+.nav-item{
+    margin-left: 30px;
+
+    /* border: 1px solid yellow; */
+}
+.nav-item :hover{
+    color: #ffc107;
+    border-top: 2px solid #ffc107;
+    transition: all 0.3s ease;
+
+}
+.nav-link{
+    color: #f8f9fa;
+    /* border: 1px solid red; */
+}
+.nav-link{
+  color: #ffc107;
+}
+button :hover{
+   color: #ffc107;
+}
+
+/* Nesta div temos conteúdo que está após à barra de navegação  */
+.introd{
+  
+  margin-top: 30px;
+  padding: 2% 200px 0 200px;
+  /* border: 1px solid red; */
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  justify-content: center;
+  
+  
+}
+/* background-cards */
+.background-cards{
+  width: 90%;
+  margin: 70px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.cardshead{
+  font-family: 'Times New Roman', Times, serif;
+  color: #ffc107;
+  border-bottom: 1px solid;
+  width: 12%;
+  margin-left: 45%;
+
+}
+
+/* From Uiverse.io by Thomasfadi */ 
+.cards {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  /* background-color: aqua; */
+  margin-top: 70px;
+  justify-content: center;
+  align-items: center;
+  padding-right:10%;
+  padding-left: 3%;
+
+}
+
+.cards .red {
+  background-color: #007e9e;
+}
+
+.cards .blue {
+  background-color: #0062ff;
+}
+
+.cards .green {
+  background-color: #18cd5e;
+}
+
+.cards .card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  height: 130px;
+  width: 100px;
+  border-radius: 10px;
+  margin-left: 100px;
+  padding-left: 0%;
+  border: 1px solid red;
+  color: white;
+  cursor: pointer;
+  transition: 400ms;
+}
+
+.cards .card p.tip {
+  font-size: 1em;
+  font-weight: 700;
+}
+
+.cards .card p.second-text {
+  font-size: .7em;
+}
+
+.cards .card:hover {
+  transform: scale(1.2, 1.2);
+}
+
+.cards:hover > .card:not(:hover) {
+  filter: blur(10px);
+  transform: scale(0.9, 0.9);
+}
+
+.card-red{
+    font-size: .5em;
+}
+
+/* rodapé */
+
+footer{
+    margin-top: 100px;
+    height: 500px;
+    background-image: linear-gradient(180deg, #0a3d62, #0c013a, black );
+    text-align: center;
+    border-top: 5px solid #ffc107;
+}
+.logo-rodape{
+    padding: 100px;
+    
+}
+.SIGMA{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight:700;
+  font-size: 1,4rem;
+  color: #ffc107;
+}
+
+/* fontes de letra baixadas */
+@font-face {
+  font-family: 'playfair';
+  src: url('../static/fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf') format('truetype'),
+   url('../static/fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

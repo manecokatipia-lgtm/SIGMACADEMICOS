@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% block content%}
+<style>
+    .table-responsive {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    td img {
+        width: 30px;
+        height: 25px;
+        transition: transform 0.4s ease;
+    }
+
+    td img:hover {
+        will-change: transform;
+        transform: scale(1.2);
+    }
+</style>
+<h4 class="text-center">Lista Conteúdo</h4><br><br>
+<hr>
+<table class="table" style="font-size: 12px;">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Capa</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Nível</th>
+            <th scope="col">Data</th>
+            <th scope="col">Formato</th>
+            <th scope="col">Turmas</th>
+            <th scope="col">acção</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for conteudo in conteudos %}
+        <tr style="height:20px;">
+            <td scope="row">{{conteudo.id}}</td>
+            <td>
+                {% if conteudo.formato_1 =="texto" %}
+                <img alt="logo" src="{{url_for('static', filename='img/icon/texto.png')}}" class="rounded">
+                </button>
+                {% elif conteudo.formato_1 =="imagem" %}
+                <img alt="logo" src="{{url_for('static', filename='img/icon/imagem.png')}}" class="rounded">
+                {% elif conteudo.formato_1 =="audio" %}
+                <img alt="logo" src="{{url_for('static', filename='img/icon/audio.png')}}" class="rounded">
+                {% elif conteudo.formato_1 =="video" %}
+                <img alt="logo" src="{{url_for('static', filename='img/icon/video.png')}}" class="rounded">
+                {% endif %}
+            </td>
+            <td>{{conteudo.titulo}}</td>
+            <td>{{conteudo.nivel}}</td>
+            <td> {{conteudo.data}}</td>
+            <td> {{conteudo.formato_1}}</td>
+            <td>
+                <select class="form-select" aria-labelledby="basic-addon2" aria-label="Default select example"
+                    hx-post="{{url_for('turma.pesquisar_turma_id',id=conteudo.ex_professor.id)}}" hx-target="this"
+                    hx-trigger="load" hx-swap="outerHTML" style="height:30px; font-size:12px">
+                    {%for tur in turmas%}
+                    <option value="{{tur.id}}">{{tur.nome}}</option>
+                    {%endfor%}
+                </select>
+            </td>
+
+            <td style="display:none">{{conteudo.codigo}} </td>
+            <td>
+                <button class="btn btn-primary" style="height:30px;width:50px;padding:5px; font-size:12px" data-bs-toggle="modal" data-bs-target="#meuModal_ed">Editar</button>
+                <button class="btn btn-secondary" style="height:30px;width:50px;padding:5px; font-size:12px; " data-bs-toggle="modal" data-bs-target="#meuModal_ex">apagar</button>
+                <button class="btn btn-danger" style="height:30px;width:25px; font-size:12px;padding:5px; ">
+                    <input type="checkbox" name="id_conteudo" /> 
+                </button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+<!-- Modal Editar Perfil -->
+<div class="modal fade" id="meuModal_ed">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="color: #0097a7;text-align:center">Editar Perfil</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Nome</label>
+                    <input type="text" class="form-control" name="nome" placeholder="Digite seu nome" value="">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" placeholder="Digite seu email" value="">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Telefone</label>
+                    <input type="text" class="form-control" name="telefone" placeholder="Digite seu telefone" value="">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Senha Actual</label>
+                    <input type="password" class="form-control" name="senha" placeholder="Digite sua senha">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Nova Senha </label>
+                    <input type="password" class="form-control" name="senha" placeholder="Digite sua senha">
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button class="btn btn-danger" data-bs-dismiss="modal">Salvar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal excluir conteudo -->
+<div class="modal fade" id="meuModal_ex">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="color: #8a0c0c;text-align:center">Excluir Conteúdo</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza que deseja excluir este conteúdo?</p>
+                <div class="modal-footer" style="display:flex; justify-content: center;">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button class="btn btn-danger" data-bs-dismiss="modal">Excluir</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

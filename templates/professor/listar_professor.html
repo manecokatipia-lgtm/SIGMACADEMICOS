@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+{% if professor %}
+<h4 class="text-center">Lista de Professores</h4>
+<hr>
+<table class="table w-100">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nº Agente</th>
+      <th scope="col">Nome</th>
+      <th scope="col">E-mail</th>
+      <th scope="col">Data de Nasc.</th>
+      <th scope="col">Genero</th>
+      <th scope="col">Turmas</th>
+      <th scope="col">Disciplinas</th>
+      <th scope="col">Foto</th>
+      <th scope="col">Acção</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for professor in professor %}
+    <tr>
+      <td scope="row">{{professor.id}}</td>
+      <td>{{professor.np}}</td>
+      <td>{{professor.nome}}</td>
+      <td>{{professor.email}}</td>
+      <td>{{professor.data_nasc}}</td>
+      <td>{{professor.genero}}</td>
+
+      <td>
+        
+           <input type="hidden" name="id_professor" id="id_professor" value="{{professor.id}}">
+          <select name="form-sect" aria-labelledby="basic-addon2" aria-label="Default select example" 
+            id="id_turma"  
+
+            hx-post="{{url_for('turma.pesquisar_turma_id',id=professor.id)}}"  id="id_professor" hx-target="this"
+            hx-trigger="load" hx-swap="outerHTML">
+            <option value="">Turmas</option>
+          </select>
+        </td>
+      
+      <td>
+
+           <input type="hidden" name="id_professor"  value="{{professor.id}}">
+          <select name="form-select" aria-labelledby="basic-addon2" aria-label="Default select example" 
+            id="id_disciplina" 
+
+            hx-post="{{url_for('disciplina.pesquisar_disciplina_id',id_prof=professor.id)}}"  id="id_professor" hx-target="this" 
+            hx-trigger="load" hx-swap="outerHTML">
+           <option value="">Disciplinas</option>
+          </select>
+        </td>
+      
+      <td>{% if professor.foto %}
+        <img alt="logo" src="{{ url_for('static', filename='img/professor/' + professor.foto) }}" width="30" height="30"
+          class="rounded">
+        {% else %}
+        <img alt="logo" src="{{url_for('static', filename='img/icon/foto.png') }}" width="30" height="30" class="rounded">
+        {% endif %}
+      </td>
+      <td>
+        <button class="btn btn-primary" hx-get="{{ url_for('professor.form_professor_editar', id=professor.id) }}"
+          hx-target="#user-form">Editar</button>
+        <button class="btn btn-danger" hx-delete="{{ url_for('professor.excluir_professor', id=professor.id) }}"
+          hx-target="#professor-list">Excluir</button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<h4 class="text-center">Nenhum Professor encontrado.</h4>
+{% endif %}
+
+<!-- Função para listar disciplina e turmas --
+<script>
+  function alterar() {
+    alert("ola");
+    let select = document.getElementById('id_turma');
+    let profId  = select.dataset.professorId;
+    select.setAttribute_('hx-trigger', 'change');
+    select.setAttribute('hx-target', '#id_disciplina');
+    select.setAttribute('hx-post', `/turma/pesquisar_turma_id/${profId}`);
+    htmx.process(select);
+      
+  }
+</script> -->
+{% endblock %}

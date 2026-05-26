@@ -1,0 +1,52 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Capa</th>
+      <th>Titulo</th>
+      <th>Nível</th>
+      <th>Data</th>
+      <th>Professor</th>
+      <th>Turmas</th>
+      <th>Ação</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for conteudo in conteudos %}
+    <tr>
+      <td>{{ conteudo.id }}</td>
+      <td>
+        {% if conteudo.formato_1 == "texto" %}
+          <img src="{{ url_for('static', filename='img/icon/texto.png') }}" width="22" height="25">
+        {% elif conteudo.formato_1 == "imagem" %}
+          <img src="{{ url_for('static', filename='img/icon/imagem.png') }}" width="30" height="30">
+        {% elif conteudo.formato_1 == "audio" %}
+          <img src="{{ url_for('static', filename='img/icon/audio.png') }}" width="30" height="30">
+        {% elif conteudo.formato_1 == "video" %}
+          <img src="{{ url_for('static', filename='img/icon/video.png') }}" width="30" height="30">
+        {% endif %}
+      </td>
+      <td>{{ conteudo.titulo }}</td>
+      <td>{{ conteudo.nivel }}</td>
+      <td>{{ conteudo.data }}</td>
+      <td>{{ conteudo.ex_professor_id.nome }}</td>
+      <td>
+        <select class="form-select">
+          {% for tur in turmas %}
+          <option value="{{ tur.id }}">{{ tur.nome }}</option>
+          {% endfor %}
+        </select>
+      </td>
+      <td>
+        <button class="btn btn-primary">Editar</button>
+        <button class="btn btn-danger"
+          hx-delete="{{ url_for('sala.excluir_conteudo', id=conteudo.id) }}"
+          hx-target="#conteudo-table"
+          hx-confirm="Tem certeza que deseja excluir este conteúdo?">
+          Excluir
+        </button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

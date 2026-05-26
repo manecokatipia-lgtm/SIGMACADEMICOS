@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="text-center">Criar salas virtuais</h2><br><br>
+
+<!-- Mensagem de feedback -->
+<div id="mensagem"></div>
+
+<form hx-post="{{ url_for('sala.cadastrar') }}"
+      hx-target="#mensagem"
+      hx-swap="innerHTML"
+      enctype="multipart/form-data"
+      hx-on:afterRequest="this.reset()">
+
+    <div class="mb-3">
+        <div class="input-group mb-3">
+            <span class="input-group-text">@</span>
+            <input type="hidden" name="professor_id" value="{{ session.get('usuario_id') }}">
+            <input type="text" class="form-control" placeholder="Designação"
+                   aria-label="Recipient’s username"
+                   aria-describedby="basic-addon2" name="nome" required>
+        </div>
+
+        <div class="input-group mb-3" style="display:none">
+            <span class="input-group-text">@</span>
+            <select class="form-select" name="nivel" id="nivel">
+                <option value="">Classe</option>
+                <option value="10">10ª</option>
+                <option value="11">11ª</option>
+                <option value="12">12ª</option>
+                <option value="13">13ª</option>
+            </select>
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text">@</span>
+            <textarea rows="2" class="form-control" name="observacao"
+                      placeholder="Observação"></textarea>
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text">
+              <img src="{{ url_for('static', filename='img/icon/sala.png') }}" width="20" height="20">
+            </span>
+            <input type="file" class="form-control" name="imagem" accept="image/*" required>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Criar Sala</button>
+    </div>
+</form>
+{% endblock %}

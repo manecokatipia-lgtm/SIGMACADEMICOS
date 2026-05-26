@@ -1,0 +1,44 @@
+<form hx-post="/usuario/editar_usuario/{{usuario.id_usuario}}" hx-target="#professor-list" hx-swap="outerHTML">
+    <h2 class="text-center">Editar Usuario</h2>
+    <div class="mb-3">
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">@</span>
+            <input type="text" class="form-control" placeholder="Nº do Aluno" aria-label="Recipient’s username"
+                aria-describedby="basic-addon2" name="nome" value="{{usuario.nome}}">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">@</span>
+            <input type="text" class="form-control" placeholder="A Sua Senha" aria-label="Recipient’s username"
+                aria-describedby="basic-addon2" name="senha" >
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">@</span>
+            <input type="text" class="form-control" placeholder="Confirmar Aenha" aria-label="Recipient’s username"
+                aria-describedby="basic-addon2" name="confirmar" >
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">@</span>
+            <input type="email" class="form-control" placeholder="E-mail do Aluno" aria-label="Recipient’s username"
+                aria-describedby="basic-addon2" name="email" value="{{usuario.email}}">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">@</span>
+            <input type="number" min="1" max="3" class="form-control" placeholder="Nº do Aluno" aria-label="Recipient’s username"
+                aria-describedby="basic-addon2" name="nivel" value="{{usuario.nivel}}">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">@</span>
+
+            <select class="form-select" aria-label="Default select example"name="estado" id="estado" style="width:100px;">
+                <option  value="{{usuario.estado}}">Estado</option>
+                <option value="Activo">Activo</option>
+                <option  value="Inactivo">Inactivo</option>
+            </select>
+        </div>
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-success">Actualizar</button>
+    </div>
+
+</form>

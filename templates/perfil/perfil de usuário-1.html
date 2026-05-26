@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Aluno</title>
+    <link rel="stylesheet" href="Perfil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="profile-container">
+        <div class="menu-wrapper">
+            <button class="menu-btn" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div id="dropdownMenu" class="dropdown-content">
+                <a href="Home"><i class="fa-solid fa-home"></i> Home</a>
+                <a href="Editar_perfil.html"><i class="fa-solid fa-user-pen"></i> Editar Perfil</a>
+                <a href="Meus Materias"><i class="fa-solid fa-book"></i> Meus Materiais</a>
+                <a href="Minhas Salas"><i class="fa-solid fa-gear"></i> Minhas Salas</a>
+                <a href="Configurações"><i class="fa-solid fa-gear"></i> Configurações</a>
+                
+            </div>
+        </div>
+
+        <header class="profile-header">
+            <div class="avatar-container">
+                <img src="img/GojoxSukuna.jpg" alt="Foto de Perfil" class="profile-pic">
+            </div>
+            <h1 class="user-name">Bill Gates</h1>
+            <p class="user-email">billgates@gmail.com</p>
+        </header>
+
+        <section class="profile-info">
+            <div class="info-group">
+                <h3><i class="fa-solid fa-address-card"></i> Biografia</h3>
+                <p>Estudante entusiasmado por tecnologia e design, focado em aprender novas formas de criar interfaces educacionais.</p>
+            </div>
+
+            <div class="info-row">
+                <div class="info-item">
+                    <span class="label">Gênero:</span>
+                    <span class="value">Masculino</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Classe:</span>
+                    <span class="value">12ª Classe</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Turma:</span>
+                    <span class="value">TI13AT</span>
+                </div>
+            </div>
+
+            <div class="info-group">
+                <h3><i class="fa-solid fa-lightbulb"></i> Interesses</h3>
+                <div class="tags">
+                    <span class="tag">Programação</span>
+                    <span class="tag">Design UI/UX</span>
+                    <span class="tag">Matemática</span>
+                </div>
+            </div>
+
+            <div class="info-group">
+                <h3><i class="fa-solid fa-graduation-cap"></i> Atividades Académicas</h3>
+                <ul class="activity-list">
+                    <li>Monitoria de Lógica de Programação</li>
+                    <li>Vencedor da Olimpíada de Matemática 2025</li>
+                    <li>Membro do Clube de Robótica</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("dropdownMenu").classList.toggle("show");
+        }
+
+        // Fecha o menu se o usuário clicar fora dele
+        window.onclick = function(event) {
+            if (!event.target.matches('.menu-btn') && !event.target.matches('.fa-bars')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

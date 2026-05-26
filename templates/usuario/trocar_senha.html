@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Trocar Palavra-Passe</title>
+</head>
+<body>
+    <h2>Trocar Palavra-Passe</h2>
+    <form method="POST">
+        <input type="hidden" name="usuario_id" value="{{ session['usuario_id'] }}">
+        
+        <label>Senha atual:</label>
+        <input type="password" name="senha_atual" required><br>
+
+        <label>Nova senha:</label>
+        <input type="password" name="nova_senha" required><br>
+
+        <label>Confirmar nova senha:</label>
+        <input type="password" name="confirmar_senha" required><br>
+
+        <button type="submit">Alterar</button>
+    </form>
+
+    {% if resultado %}
+        <p>{{ resultado.mensagem }}</p>
+    {% endif %}
+</body>
+</html>

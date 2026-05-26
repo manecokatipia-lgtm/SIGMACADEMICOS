@@ -1,0 +1,86 @@
+<!-- Mensagem de feedback -->
+<div id="mensagem"></div>
+
+<form hx-post="{{ url_for('sala.cadastrar_conteudo') }}"
+      hx-target="#conteudo-table"
+      hx-swap="outerHTML"
+      enctype="multipart/form-data"
+      hx-on:afterRequest="this.reset()"
+      hx-on:htmx:afterOnLoad="document.getElementById('mensagem').innerHTML = event.detail.xhr.responseText">
+
+    <h2 class="text-center" style="margin-bottom: 30px;">Material Didático</h2><br>
+
+    <div class="mb-3" style="display:flex; flex-direction:column; align-items:center; border:1px solid #89a4ec; padding:25px; border-radius:10px; background-color:#fff; width:900px; margin:auto;">
+        
+        <!-- Professor -->
+        <input type="hidden" name="id_prof" value="{{ id_professor }}">
+
+        <!-- Título -->
+        <div class="input-group mb-3">
+            <span class="input-group-text">@</span>
+            <input type="text" class="form-control" name="titulo" placeholder="Título do conteúdo" required>
+        </div>
+
+        <!-- Nível -->
+        <div class="input-group mb-3">
+            <span class="input-group-text">@</span>
+            <select class="form-select" name="nivel" required>
+                <option value="">Selecione o nível</option>
+                <option value="10">10º Ano</option>
+                <option value="11">11º Ano</option>
+                <option value="12">12º Ano</option>
+                <option value="13">13º Ano</option>
+                <option value="pap">Prova de Aptidão Profissional (PAP)</option>
+                <option value="todos">Todos os níveis</option>
+            </select>
+        </div>
+
+        <!-- Formato primário -->
+        <div class="input-group mb-3">
+            <span class="input-group-text">@</span>
+            <select class="form-select" name="formato_1" id="formato_1" onchange="ajustarFormato(this, 'conteudo_1')" required>
+                <option value="">Tipo de Formato</option>
+                <option value="texto">Texto - PDF, DOC, HTML</option>
+                <option value="video">Vídeo - MP4, AVI, MKV</option>
+                <option value="audio">Áudio - MP3, WAV, FLAC</option>
+                <option value="imagem">Imagem - JPG, PNG, GIF</option>
+            </select>
+        </div>
+
+        <!-- Upload primário -->
+        <div class="input-group mb-3">
+            <span class="input-group-text">Primário</span>
+            <input type="file" class="form-control" name="conteudo_1" id="conteudo_1" required multiple>
+        </div>
+
+        <!-- Formato secundário -->
+        <div class="input-group mb-3">
+            <span class="input-group-text">@</span>
+            <select class="form-select" name="formato_2" id="formato_2" onchange="ajustarFormato(this, 'conteudo_2')">
+                <option value="">Tipo de Formato</option>
+                <option value="texto">Texto - PDF, DOC, HTML</option>
+                <option value="video">Vídeo - MP4, AVI, MKV</option>
+                <option value="audio">Áudio - MP3, WAV, FLAC</option>
+                <option value="imagem">Imagem - JPG, PNG, GIF</option>
+            </select>
+        </div>
+
+        <!-- Upload secundário -->
+        <div class="input-group mb-3">
+            <span class="input-group-text">Anexos</span>
+            <input type="file" class="form-control" name="conteudo_2" id="conteudo_2" multiple>
+        </div>
+
+        <!-- Observações -->
+        <div class="input-group mb-3">
+            <span class="input-group-text">@</span>
+            <textarea rows="2" class="form-control" name="obs" placeholder="Descrição do conteúdo"></textarea>
+        </div>
+
+        <!-- Botão -->
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Gravar</button>
+        </div>
+    </div>
+</form>
+

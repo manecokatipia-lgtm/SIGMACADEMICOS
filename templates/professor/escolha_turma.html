@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<select class="form-select" aria-labelledby="basic-addon2" aria-label="Default select example">
+    <option value="">Turma</option>
+    {% for turma in turma_id %}
+    <option value="{{turma.id}}">{{turma.nome}}</option>
+    {%endfor%}
+</select>
+{% endblock %}

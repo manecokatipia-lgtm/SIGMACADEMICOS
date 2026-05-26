@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content%}
+{% if disciplina %}
+<h4 class="text-center">Lista de Disciplinas</h4>
+<hr>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Sigla</th>
+      <th scope="col">Acção</th>
+   
+    </tr>
+  </thead>
+  <tbody>
+    {% for disc in disciplina %}
+    <tr>
+      <td scope="row">{{disc.id}}</td>
+      <td>{{disc.nome}}</td>
+      <td>{{disc.sigla}}</td>
+      <td>
+        <button class="btn btn-primary" hx-get="{{url_for('disciplina.form_disciplina_editar',id=disc.id) }}"
+          hx-target="#user-form">Editar</button>
+        <button class="btn btn-danger" hx-delete="{{url_for('disciplina.excluir_disciplina',id=disc.id) }}"
+          hx-target="#professor-list">Excluir</button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<h4 class="text-center">Nenhuma Disciplina Encontrada.</h4>
+{% endif %}
+{% endblock %}

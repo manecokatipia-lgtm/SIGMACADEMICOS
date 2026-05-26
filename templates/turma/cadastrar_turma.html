@@ -1,0 +1,29 @@
+
+<form hx-post="{{ url_for('turma.cadastrar') }}" hx-target="#professor-list" hx-swap="innerHTML"   hx-on:afterRequest="this.reset()"  onsubmit="setTimeout(() => this.reset(), 100);">
+    <h2 class="text-center">Cadastrar Turma</h2>
+    <div class="mb-3">
+        <div class="mb-3">
+        <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">@</span>
+                <select class="form-select" aria-label="Default select example" name="turma" id="turma">
+                    <option selected>turma</option>
+                    {% for turma in turmas %}
+                    <option value="{{turma.id}}">{{turma.nome}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">@</span>
+            <input type="text" class="form-control" placeholder=" Nome da Turma" aria-label="Recipient’s username"aria-describedby="basic-addon2" name="nome">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">
+                <img src="{{ url_for('static', filename='img/icon/id.png') }}" alt="" width="20" height="20">
+            </span>
+            <input type="number" class="form-control" placeholder="Nº de Alunos" aria-label="Recipient’s username"aria-describedby="basic-addon2"name="capacidade">
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Adicionar Turma</button>
+        </div>
+</form>
+

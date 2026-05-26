@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block content %}
+{% if professores %}
+<table class="table w-100">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Vincular</th>
+            <th scope="col">Nº de Disciplina</th>
+            <th scope="col">Disciplinas</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Turmas</th>
+            <th scope="col">Disciplinas</th>
+            <th scope="col">Foto</th>
+            <th scope="col">Acção</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for professor in professores %}
+        <tr>
+            <td>{{professor.id}}</td>
+            <td scope="row"> <input type="checkbox" name="id_prof" value="{{professor.id}}" onclick="marcarUnico(this)"
+                    hx-post="{{url_for('turma.receber_prof' )}}" hx-trigger="click"
+                    hx-include="[name='id_prof']:checked" />
+            </td>
+            <td hx-get="{{url_for('turma.editar_n_disciplinas', id=professor.id)}}" hx-trigger="click" hx-target="this"
+                hx-swap="outerHTML">
+                {{professor.n_disciplina}}
+            </td>
+            <td>{{professor.nome}}</td>
+            <td>
+                <select class="form-select" aria-labelledby="basic-addon2" aria-label="Default select example"
+                    hx-post="{{url_for('turma.pesquisar_turma_id',id=professor.id)}}" hx-target="this" hx-trigger="load"
+                    hx-swap="outerHTML">
+                    {%for tur in turmas%}
+                    <option value="{{tur.id}}">{{tur.nome}}</option>
+                    {%endfor%}
+            <td>
+                <select class="form-select" aria-labelledby="basic-addon2" aria-label="Default select example">
+                    <option value=""></option>
+                </select>
+            </td>
+            <td>
+                {% if professor.foto %}
+                <img alt="logo" src="{{ url_for('static', filename='img/professor/' + professor.foto) }}" width="30" height="30"
+                    class="rounded">
+                {% else %}
+                <img alt="logo" src="{{url_for('static', filename='img/icon/foto.png') }}" width="30" height="30"
+                    class="rounded">
+                {% endif %}
+            </td>
+            <td>
+                <button class="btn btn-danger" hx-delete="{{ url_for('professor.excluir_professor',id=professor.id) }}"
+                    hx-target="#professor-list">Desvincular</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div>
+    <h6 class="text-left">Vincular Disciplina ao Professor</h6>
+    
+    <button type="button" class="btn btn-primary" hx-post="{{url_for('turma.vincular_disc') }}" hx-trigger="click"
+        hx-include="[name='id_prof']:checked" hx-confirmation="Vincular disciplinas ao professor"
+        hx-on="htmx:afterOnLoad: alert(event.detail.xhr.responseText)">Vincular Disciplinas</button>
+</div>
+
+
+<script>
+    function marcarUnico(el) {
+        document.querySelectorAll('input[name="id_prof"]').forEach(cb => {
+            if (cb !== el) cb.checked = false;
+        });
+    }
+</script>
+
+{% else %}
+<h4 class="text-center">Nenhum Professor Encontrado.</h4>
+{% endif %}
+
+{% endblock %}

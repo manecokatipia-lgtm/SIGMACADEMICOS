@@ -1,0 +1,39 @@
+<form hx-post="/sala/editar" hx-target="#professor-list"  hx-trigger="submit" enctype="multipart/form-data" hx-swap="innerHTML"  hx-on:afterRequest="this.reset()"  onsubmit="setTimeout(() => this.reset(), 100);">
+    <h2 class="text-center">Editar Sala</h2>
+    <div class="mb-3">
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">@</span>
+            <input type="text" class="form-control" placeholder="Designação" aria-label="Recipient’s username"
+                aria-describedby="basic-addon2" name="nome" value="{{ sala.nome }}">
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">@</span>
+            <select class="form-select" aria-label="Default select example" name="nivel" id="nivel">
+                <option selected>Classe</option>
+                <option value="10">10ª</option>
+                <option value="11">11ª</option>
+                <option value="12">12ª</option>
+                <option value="13">13ª</option>
+            </select>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">@</span>
+            <textarea rows="2" cols="25" class="form-control" aria-label="Recipient’s username"
+                    aria-describedby="basic-addon2" name="observacao" placeholder="Observação">{{ sala.observacao }}</textarea>       
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text"><img src="{{ url_for('static', filename='img/icon/foto.png') }}" alt="" width="20"
+                    height="20"></span>
+            <div class="form-floating">
+                <input type="file" class="form-control" aria-label="Recipient’s username" 
+                    aria-describedby="basic-addon2" name="imagem"  accept="image/*" required>
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-success">Atualizar</button>
+    </div>
+
+</form>

@@ -1,0 +1,46 @@
+<form hx-post="/aluno/editar_aluno/{{aluno.id}}" hx-target="#professor-list"hx-swap="innerHTML"  hx-on:afterRequest="this.reset()"  onsubmit="setTimeout(() => this.reset(), 100);">
+    <h2 class="text-center">Editar Alunos</h2>
+    <div class="mb-3">
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">@</span>
+            <input type="number" class="form-control" placeholder="Nº do Aluno" aria-label="Recipient’s username"
+                aria-describedby="basic-addon2" name="numero_aluno" value="{{aluno.mat}}">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">@</span>
+            <input type="text" class="form-control" placeholder="Nome do Aluno" aria-label="Recipient’s username"
+                aria-describedby="basic-addon2" name="nome" value="{{aluno.nome}}">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">@</span>
+            <input type="email" class="form-control" placeholder="E-mail do Aluno" aria-label="Recipient’s username"
+                aria-describedby="basic-addon2" name="email" value="{{aluno.email}}">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">@</span>
+            <input type="date" class="form-control" placeholder="Data de Nascimento do Aluno" aria-label="Recipient’s username"
+                aria-describedby="basic-addon2" name="data_nascimento" value="{{aluno.data_nascimento}}">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">@</span>
+
+            <select class="form-select" aria-label="Default select example"name="genero">
+                <option  value="{{aluno.genero}}">Genero</option>
+                <option value="Masculino">Masculino</option>
+                <option  value="Feminino">Feminino</option>
+            </select>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text"><img src="{{ url_for('static', filename='img/icon/foto.png') }}" alt="" width="20"
+                    height="20"></span>
+            <div class="form-floating">
+                <input type="file" class="form-control" placeholder="Foto do Aluno" aria-label="Recipient’s username"aria-describedby="basic-addon2" name="foto">
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-success">Actualizar</button>
+    </div>
+
+</form>
